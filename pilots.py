@@ -24,7 +24,7 @@ def scrape_pilots():
 				pilots.append(t[0])
 
 def query_pilots():
-	database_pilots = db.cursor()
+	database_pilots = conn.cursor()
 	cursor.execute('select * from pilots')
 	for row in cur.fetchall():
 		print row
