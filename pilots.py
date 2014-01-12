@@ -27,7 +27,10 @@ def query_pilots():
 	
 	cur.execute('select * from pilots')
 	for row in cur.fetchall():
-		print row
+		print row[1]
 
-
-query_pilots()
+app_pilots = scrape_pilots()
+db_pilots = query_pilots()
+missing_pilots = app_pilots - db_pilots
+for i in missing_pilots:
+	print i
