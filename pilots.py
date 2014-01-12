@@ -12,7 +12,7 @@ conn = MySQLdb.connect (host = "localhost",
                         user = "root",
                         passwd = "sm00TH**",
                         db = "jumpgate")
-
+cur = conn.cursor()
 def scrape_pilots():
 	for link in soup.find_all('a'):
 		pilot = []
@@ -24,8 +24,8 @@ def scrape_pilots():
 				pilots.append(t[0])
 
 def query_pilots():
-	database_pilots = conn.cursor()
-	cursor.execute('select * from pilots')
+	
+	cur.execute('select * from pilots')
 	for row in cur.fetchall():
 		print row
 
