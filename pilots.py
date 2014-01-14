@@ -22,15 +22,17 @@ def scrape_pilots():
 				s = p.rsplit('/')
 				t = s[3].split('.')
 				pilots.append(t[0])
+	return pilots
 
 def query_pilots():
-	
+	db_pilots = []	
 	cur.execute('select * from pilots')
 	for row in cur.fetchall():
-		print row[1]
+		 db_pilots.append(row[1])
+	return db_pilots
 
 app_pilots = scrape_pilots()
 db_pilots = query_pilots()
-missing_pilots = app_pilots - db_pilots
+missing_pilots = set(app_pilots) - set(db_pilots)
 for i in missing_pilots:
 	print i
