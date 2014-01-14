@@ -34,5 +34,9 @@ def query_pilots():
 app_pilots = scrape_pilots()
 db_pilots = query_pilots()
 missing_pilots = set(app_pilots) - set(db_pilots)
-for i in missing_pilots:
-	print i
+if len(missing_pilots) > 0:
+	#add_pilots(missing_pilots)
+	for i in missing_pilots:
+		print i
+		cur.execute('insert into pilots(pilots_name) values("%s")' % i) 
+		conn.commit()
